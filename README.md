@@ -26,3 +26,31 @@ A production-ready REST API for a bookings platform. Users browse services, book
    source venv/bin/activate  # Linux/Mac
    venv\Scripts\activate     # Windows
    ```
+
+
+Prerequisites
+Python 3.11+
+PostgreSQL installed and running
+Create a database:
+createdb boookit
+Clone & Setup git clone https://github.com//bookit.git cd boookit python -m venv venv source venv/bin/activate # On Windows: venv\Scripts\activate pip install -r requirements.txt
+
+Environment Variables
+
+Create a .env file in the root directory:
+
+DATABASE_URL=postgresql://bookit_user:12345@localhost:5432/bookit_db
+SECRET_KEY=your-super-secret-jwt-key-change-in-prod
+ALGORITHM=HS256
+ACCESS_TOKEN_EXPIRE_MINUTES=30
+REFRESH_TOKEN_EXPIRE_DAYS=7
+
+Apply Database Migrations alembic upgrade head
+
+Start the Server uvicorn app.main:app --reload
+
+Test the API
+
+Open your browser at:
+
+http://127.0.0.1:8000/docs
